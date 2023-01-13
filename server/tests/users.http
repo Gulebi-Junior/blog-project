@@ -6,6 +6,16 @@ GET http://localhost:3000/users
 
 GET http://localhost:3000/users/63c00c639b02579df8982a5f
 
+### PUT User
+
+PUT http://localhost:3000/users/63c16fdb2758fd4e91e04b6b
+content-type: application/json
+
+{
+    "name": "Gleb",
+    "surname": "Ivanov"
+}
+
 ### POST User
 
 POST http://localhost:3000/users
@@ -20,5 +30,5 @@ content-type: application/json
 
 ### Delete User
 
-DELETE http://localhost:3000/users/63c16f49780254e73caa8ac0
+DELETE http://localhost:3000/users/63c17c8ac3a9cf4392c49f9c
 

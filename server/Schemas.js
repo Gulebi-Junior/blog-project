@@ -5,7 +5,17 @@ const UserSchema = new Schema({
     surname: { type: String },
     login: { type: String },
     password: { type: String },
-    likedPosts: { type: [], default: [] },
+    // likedPosts: { type: [PostSchema], default: [] },
 });
 
-module.exports = { UserSchema };
+const PostSchema = new Schema({
+    title: { type: String },
+    description: { type: String },
+    tags: { type: [String] },
+    body: { type: String },
+    author: { type: UserSchema },
+    // likes: { type: Number },
+    usersLiked: { type: [UserSchema] },
+});
+
+module.exports = { UserSchema, PostSchema };

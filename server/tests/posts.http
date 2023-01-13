@@ -1,0 +1,25 @@
+### GET Posts
+
+GET http://localhost:3000/posts
+
+### GET Post by id
+
+GET http://localhost:3000/posts/63c00c639b02579df8982a5f
+
+### POST Post
+
+POST http://localhost:3000/posts
+content-type: application/json
+
+{
+    "title": "Flour",
+    "description": "The best flour",
+    "tags": ["food", "products", "cooking"],
+    "body": "Tsesna flour of the highest grade is a UNIVERSAL flour of fine grinding, creamy white in color.",
+    "authorId": "63c16fdb2758fd4e91e04b6b"
+}
+
+### Delete Post
+
+DELETE http://localhost:3000/posts/63c17cd4259931d957d8602c
+

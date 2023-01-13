@@ -24,6 +24,17 @@ router.post("/", async (req, res) => {
     res.send(await newUser.save());
 });
 
+router.put("/:id", async (req, res) => {
+    res.set("Content-Type", "application/json");
+    const { id } = req.params;
+    const { name, surname, login, password } = req.body;
+    const user = await UserModel.findById(id);
+
+    Object.assign(user, { name, surname, login, password });
+
+    res.send(await user.save());
+});
+
 router.delete("/:id", async (req, res) => {
     res.set("Content-Type", "application/json");
     const { id } = req.params;

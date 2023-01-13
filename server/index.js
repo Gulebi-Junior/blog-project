@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/users", require("./routers/usersRouter"));
+app.use("/posts", require("./routers/postsRouter"));
 
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGODB_URI).then(
