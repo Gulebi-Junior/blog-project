@@ -1,0 +1,22 @@
+{
+    "editor.formatOnSave": true,
+    "workbench.iconTheme": "vscode-icons",
+    "cSpell.language": "en,ru",
+    "html-css-class-completion.enableEmmetSupport": true,
+    "html.format.enable": false,
+    "prettier.requireConfig": true,
+    "cSpell.words": [
+        "btns",
+        "dfsd",
+        "gleb",
+        "guleb",
+        "ivanov",
+        "subblock",
+        "subrow"
+    ],
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSaveTimeout": 2000,
+    "emmet.includeLanguages": {
+        "javascript": "html"
+    }
+}

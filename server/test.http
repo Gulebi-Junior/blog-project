@@ -1,0 +1,24 @@
+### GET Users
+
+GET http://localhost:3000/users
+
+### GET User by id
+
+GET http://localhost:3000/users/63c00c639b02579df8982a5f
+
+### POST User
+
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+    "name": "Gleb",
+    "surname": "Ivanov",
+    "login": "Guleb",
+    "password": "1234"
+}
+
+### Delete User
+
+DELETE http://localhost:3000/users/63c16f49780254e73caa8ac0
+
