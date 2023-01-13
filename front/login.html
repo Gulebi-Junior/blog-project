@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="http://localhost:3000/static/general.css" />
+        <link rel="stylesheet" href="./login.css" />
+        <title>Login Page</title>
+    </head>
+    <body>
+        <div class="container">
+            <div id="login-block">
+                <h3 class="block-title">Login</h3>
+                <input type="text" id="name-input" class="input" placeholder="Name" />
+                <input type="text" id="surname-input" class="input" placeholder="Surname" />
+                <input type="text" id="login-input" class="input" placeholder="Login" />
+                <input type="password" id="password-input" class="input" placeholder="Password" />
+                <button id="login-btn" class="btn block-btn" onclick="login()">Login</button>
+                <button id="back-btn" class="btn back-btn" onclick="history.back()">Back</button>
+            </div>
+        </div>
+        <script src="./login.js"></script>
+    </body>
+</html>

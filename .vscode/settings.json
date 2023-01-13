@@ -5,15 +5,7 @@
     "html-css-class-completion.enableEmmetSupport": true,
     "html.format.enable": false,
     "prettier.requireConfig": true,
-    "cSpell.words": [
-        "btns",
-        "dfsd",
-        "gleb",
-        "guleb",
-        "ivanov",
-        "subblock",
-        "subrow"
-    ],
+    "cSpell.words": ["btns", "dfsd", "gleb", "guleb", "ivanov", "signin", "subblock", "subrow"],
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSaveTimeout": 2000,
     "emmet.includeLanguages": {
