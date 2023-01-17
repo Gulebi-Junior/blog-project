@@ -1,0 +1,56 @@
+#newsline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 10%;
+}
+
+#posts-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#newsline-title {
+    margin-bottom: 20px;
+}
+
+.post-card {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.card-likes-subblock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-like-image {
+    cursor: pointer;
+}
+
+.card-author {
+    font-size: 14px;
+}
+
+.card-title {
+    font-size: 22px;
+}
+
+.card-body {
+    margin-top: 5px;
+}
+
+.card-description {
+    font-size: 18px;
+}
+
+.card-likes-subblock {
+    margin: 7px 0px;
+}

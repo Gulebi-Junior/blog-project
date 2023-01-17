@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="http://localhost:3000/static/general.css" />
-        <link rel="stylesheet" href="./main.css" />
-        <title>Main Page</title>
+        <link rel="stylesheet" href="./users.css" />
+        <title>Users Page</title>
     </head>
     <body>
         <div class="main-container">
@@ -19,27 +19,21 @@
                     <button class="navbar-btn" id="sign-btn">Sign out</button>
                 </div>
             </header>
-            <div id="newsline">
-                <h2 id="newsline-title">Newsline</h2>
-                <div id="posts-block"></div>
+            <div id="users-container">
+                <h2 id="users-title">Users</h2>
+                <div id="users-cards-block"></div>
             </div>
         </div>
 
         <script src="http://localhost:3000/static/general.js"></script>
-        <script src="./main.js"></script>
+        <script src="./users.js"></script>
     </body>
 
-    <template id="post-template">
-        <div class="post-card">
-            <p class="card-author"></p>
-            <h3 class="card-title"></h3>
-            <p class="card-description"></p>
-            <p class="card-body"></p>
-            <div class="card-likes-subblock">
-                <img src="./images/heart.png" alt="like" class="card-like-image" width="28px" />
-                <p class="card-likes-num">0</p>
-            </div>
-            <p class="card-tags"></p>
+    <template id="user-card-template">
+        <div class="user-card">
+            <h3 class="card-full-name"></h3>
+            <h4 class="card-login"></h4>
+            <button class="card-subscribe-btn">Subscribe</button>
         </div>
     </template>
 </html>

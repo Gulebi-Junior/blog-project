@@ -1,0 +1,50 @@
+#users-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 10%;
+}
+
+#users-cards-block {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+#users-title {
+    margin-bottom: 20px;
+}
+
+.user-card {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #d3d4d9;
+}
+
+.card-subscribe-btn {
+    width: 65%;
+    height: 28px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 3px 6px;
+    font-weight: 600;
+    background: #a9bebe;
+    cursor: pointer;
+    border: 0px;
+
+    transition: 0.2s;
+}
+
+.card-subscribe-btn:hover {
+    background: #ccdfdf;
+}

@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="http://localhost:3000/static/general.css" />
-        <link rel="stylesheet" href="./main.css" />
-        <title>Main Page</title>
+        <link rel="stylesheet" href="./profile.css" />
+        <title>Profile Page</title>
     </head>
     <body>
         <div class="main-container">
@@ -19,19 +19,27 @@
                     <button class="navbar-btn" id="sign-btn">Sign out</button>
                 </div>
             </header>
-            <div id="newsline">
-                <h2 id="newsline-title">Newsline</h2>
-                <div id="posts-block"></div>
+            <div id="profile-container">
+                <h2 id="profile-title">Profile</h2>
+                <div id="profile-block">
+                    <div id="profile-info-block">
+                        <h3>Gleb Ivanov</h3>
+                        <h4>Guleb</h4>
+                    </div>
+                    <div id="profile-posts-block">
+                        <h3 id="profile-posts-title">Posts</h3>
+                        <div id="profile-posts-cards-block"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <script src="http://localhost:3000/static/general.js"></script>
-        <script src="./main.js"></script>
+        <script src="./profile.js"></script>
     </body>
 
     <template id="post-template">
         <div class="post-card">
-            <p class="card-author"></p>
             <h3 class="card-title"></h3>
             <p class="card-description"></p>
             <p class="card-body"></p>
@@ -39,7 +47,7 @@
                 <img src="./images/heart.png" alt="like" class="card-like-image" width="28px" />
                 <p class="card-likes-num">0</p>
             </div>
-            <p class="card-tags"></p>
+            <!-- <p class="card-tags"></p> -->
         </div>
     </template>
 </html>

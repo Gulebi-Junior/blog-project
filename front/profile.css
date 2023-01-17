@@ -1,0 +1,75 @@
+#profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 10%;
+}
+
+#profile-block {
+    max-width: 50%;
+    min-width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+#profile-info-block,
+#profile-posts-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#profile-posts-block {
+    margin-top: 15px;
+}
+
+#profile-posts-cards-block {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 15px;
+}
+
+#profile-title {
+    margin-bottom: 20px;
+}
+
+.post-card {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 22px;
+}
+
+.card-body {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.card-description {
+    font-size: 18px;
+}
+
+.card-likes-subblock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 7px 0px;
+}
+
+/* .card-like-image {
+    cursor: pointer;
+} */
+
+.card-likes-num {
+    font-weight: 500;
+}

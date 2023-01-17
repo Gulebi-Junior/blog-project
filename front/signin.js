@@ -13,7 +13,8 @@ async function signin() {
     });
     const data = await response.json();
 
-    if (data.message === "Success") alert("Success");
-    // location.replace("signin.html");
-    else alert(data.message);
+    if (data.message === "Success") {
+        localStorage.setItem("currentUserId", data.data);
+        location.replace("main.html");
+    } else alert(data.message);
 }
