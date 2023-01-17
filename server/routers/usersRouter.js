@@ -6,14 +6,20 @@ const router = express.Router();
 router.get("/", async (req, res) => {
     res.set("Content-Type", "application/json");
 
-    res.send(await UserModel.find({}));
+    UserModel.find({}, (err, users) => {
+        if (err) return res.status(500).send({ message: "Error" });
+        else return res.status(200).send({ message: "Success", data: users });
+    });
 });
 
 router.get("/:id", async (req, res) => {
     res.set("Content-Type", "application/json");
     const { id } = req.params;
 
-    res.send(await UserModel.findById(id));
+    UserModel.findById(id, (err, user) => {
+        if (err) return res.status(500).send({ message: "Error" });
+        else return res.status(200).send({ message: "Success", data: user });
+    });
 });
 
 router.post("/login", (req, res) => {
@@ -40,9 +46,28 @@ router.post("/signin", (req, res) => {
             if (err) return res.status(500).send({ message: "Error" });
             else if (user === null) return res.status(404).send({ message: "Not Found" });
             else {
-                if (user?.password === password) return res.status(200).send({ message: "Success" });
-                else return res.status(400).send({ message: "Incorrect Password" });
+                if (user?.password === password) {
+                    return res.status(200).send({ message: "Success", data: user._id });
+                } else return res.status(400).send({ message: "Incorrect Password" });
             }
+        });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+router.post("/subscribe", async (req, res) => {
+    try {
+        res.set("Content-Type", "application/json");
+        const { targetId, userId } = req.body;
+        const user = await UserModel.findById(userId);
+
+        if (!user.subscribedUsersIds.includes(targetId)) user.subscribedUsersIds.push(targetId);
+        else user.subscribedUsersIds = user.subscribedUsersIds.filter((id) => id != targetId);
+
+        user.save((err) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(201).send({ message: "Success" });
         });
     } catch (error) {
         console.error(error);

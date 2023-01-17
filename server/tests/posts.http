@@ -14,9 +14,9 @@ content-type: application/json
 {
     "title": "Flour",
     "description": "The best flour",
-    "tags": ["food", "products", "cooking"],
+    "tags": ["#food", "#products", "#cooking"],
     "body": "Tsesna flour of the highest grade is a UNIVERSAL flour of fine grinding, creamy white in color.",
-    "authorId": "63c16fdb2758fd4e91e04b6b"
+    "authorId": "63c1b872043c4df56f446327"
 }
 
 ### Delete Post
