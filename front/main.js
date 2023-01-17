@@ -34,7 +34,7 @@ async function loadPosts() {
     const response = await fetch(url + "/posts", { method: "GET" });
     const data = await response.json();
 
-    const postsBlock = document.querySelector("#posts-block");
+    const postsBlock = document.querySelector("#posts-cards-block");
     const postTemplate = document.querySelector("#post-template");
 
     postsBlock.innerHTML = "";

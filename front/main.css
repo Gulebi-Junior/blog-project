@@ -1,28 +1,29 @@
-#newsline {
+#newsline-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     padding: 0px 10%;
 }
 
 #posts-block {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
 #newsline-title {
     margin-bottom: 20px;
 }
 
-.post-card {
-    width: 50%;
+#posts-sort,
+#posts-block {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    padding: 20px 30px;
-    border-radius: 10px;
-    background: #ffffff;
+    align-items: center;
 }
 
 .card-likes-subblock {
@@ -53,4 +54,8 @@
 
 .card-likes-subblock {
     margin: 7px 0px;
+}
+
+.card-likes-num {
+    font-weight: 500;
 }

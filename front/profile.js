@@ -15,8 +15,9 @@ async function loadPosts() {
 
         clone.querySelector(".card-title").textContent = post.title;
         clone.querySelector(".card-description").textContent = post.description;
-        clone.querySelector(".card-body").textContent = post.body.split(" ").slice(0, 13).join(" ") + "...";
+        clone.querySelector(".card-body").textContent = post.body;
         clone.querySelector(".card-likes-num").textContent = post.usersIdsLiked.length;
+        clone.querySelector(".card-tags").textContent = post.tags.join(" ");
 
         if (post.usersIdsLiked.includes(userId)) {
             clone.querySelector(".card-like-image").src = "./images/heart-fill.png";
@@ -26,4 +27,16 @@ async function loadPosts() {
     }
 }
 
+async function loadUserInfo() {
+    const userId = localStorage.getItem("currentUserId");
+    const response = await fetch(url + "/users/" + userId, { method: "GET" });
+    const data = await response.json();
+
+    console.log(data);
+
+    document.querySelector("#profile-info-fullname").textContent = `${data.data.name} ${data.data.surname}`;
+    document.querySelector("#profile-info-login").textContent = data.data.login;
+}
+
+loadUserInfo();
 loadPosts();

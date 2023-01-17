@@ -1,49 +1,47 @@
 #profile-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     padding: 0px 10%;
 }
 
 #profile-block {
-    max-width: 50%;
-    min-width: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 30px;
-    border-radius: 10px;
-    background: #ffffff;
+    /* display: flex;
+    justify-content: center; */
+    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
 }
 
 #profile-info-block,
-#profile-posts-block {
+#profile-posts-block,
+#profile-subscribers-block {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    height: fit-content;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
 }
 
-#profile-posts-block {
-    margin-top: 15px;
-}
+/* #profile-posts-block {
+    max-width: 50%;
+} */
 
-#profile-posts-cards-block {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 15px;
-}
-
-#profile-title {
+#profile-title,
+#profile-posts-title {
     margin-bottom: 20px;
 }
 
-.post-card {
-    width: 150px;
+.card-likes-subblock {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 5px;
+}
+
+.card-author {
+    font-size: 14px;
 }
 
 .card-title {
@@ -52,7 +50,6 @@
 
 .card-body {
     margin-top: 5px;
-    text-align: center;
 }
 
 .card-description {
@@ -60,16 +57,15 @@
 }
 
 .card-likes-subblock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin: 7px 0px;
 }
 
-/* .card-like-image {
-    cursor: pointer;
-} */
-
 .card-likes-num {
     font-weight: 500;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    border: 0px;
 }
