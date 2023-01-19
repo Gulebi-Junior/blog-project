@@ -20,17 +20,23 @@
                 </div>
             </header>
             <div id="profile-container">
-                <h2 id="profile-title">Profile</h2>
+                <h2 id="profile-title" class="text-center">Profile</h2>
                 <div id="profile-block">
                     <div id="profile-info-block">
-                        <h3 id="profile-info-fullname"></h3>
-                        <h4 id="profile-info-login"></h4>
+                        <h3 id="profile-info-fullname" class="text-center" contenteditable="false"></h3>
+                        <h4 id="profile-info-login" class="text-center" contenteditable="false"></h4>
+                        <button id="profile-info-change-btn" class="btn" onclick="changeUser(event)">Change</button>
                     </div>
                     <div id="profile-posts-block">
-                        <h3 id="profile-posts-title">Posts</h3>
+                        <h3 id="profile-posts-title" class="text-center">Posts</h3>
+                        <div class="profile-posts-btn-subblock">
+                            <button class="btn" id="profile-create-btn" onclick="createPost(event)">
+                                Create New Post
+                            </button>
+                        </div>
                         <div id="profile-posts-cards-block"></div>
                     </div>
-                    <div id="profile-subscribers-block"><h3>Subscribers</h3></div>
+                    <div id="profile-subscribers-block"><h3 class="text-center">Subscribers</h3></div>
                 </div>
             </div>
         </div>
@@ -41,15 +47,24 @@
 
     <template id="post-template">
         <div class="post-card">
-            <h3 class="card-title"></h3>
+            <h3 class="card-title" contenteditable="false"></h3>
             <p class="card-description"></p>
-            <p class="card-body"></p>
-            <textarea name="card-body-input" id="card-body-input" rows="5"></textarea>
+            <p class="card-body" contenteditable="false"></p>
             <div class="card-likes-subblock">
                 <img src="./images/heart.png" alt="like" class="card-like-image" width="28px" />
                 <p class="card-likes-num">0</p>
             </div>
-            <p class="card-tags"></p>
+            <div class="card-tags-block">
+                <p class="card-tags"></p>
+                <div class="card-tags-input-subblock" style="display: none">
+                    <input type="text" class="input card-tags-input" />
+                    <button class="btn card-tags-btn" onclick="addTag(event)">Add</button>
+                </div>
+            </div>
+            <div class="card-control-btns-subblock">
+                <button class="btn card-change-btn">Change</button>
+                <button class="btn card-delete-btn">Delete</button>
+            </div>
         </div>
     </template>
 </html>

@@ -39,7 +39,7 @@ async function loadUsers() {
 
         const userId = localStorage.getItem("currentUserId");
 
-        if (user.subscribedUsersIds.includes(userId)) {
+        if (user.subscriptionUserIds.includes(userId)) {
             clone.querySelector(".card-subscribe-btn").textContent = "Unsubscribe";
         }
 

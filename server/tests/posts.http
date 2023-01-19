@@ -23,3 +23,14 @@ content-type: application/json
 
 DELETE http://localhost:3000/posts/63c17cd4259931d957d8602c
 
+### Post Filter Post
+
+POST http://localhost:3000/posts/filter
+content-type: application/json
+
+{
+    "userId": "63c1b872043c4df56f446327"
+}
+
+
+

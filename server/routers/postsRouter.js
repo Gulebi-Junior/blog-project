@@ -3,17 +3,47 @@ const { PostModel, UserModel } = require("../Models");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-    res.set("Content-Type", "application/json");
+router.get("/get/:skip", async (req, res) => {
+    try {
+        res.set("Content-Type", "application/json");
+        const { skip } = req.params;
 
-    res.send(await PostModel.find({}));
+        PostModel.find({}, (err, posts) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(200).send({ message: "Success", data: posts });
+        })
+            .skip(Number(skip))
+            .limit(10);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+router.get("/count", async (req, res) => {
+    try {
+        res.set("Content-Type", "application/json");
+
+        PostModel.count({}, (err, count) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(200).send({ message: "Success", data: count });
+        });
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 router.get("/byId/:id", async (req, res) => {
-    res.set("Content-Type", "application/json");
-    const { id } = req.params;
+    try {
+        res.set("Content-Type", "application/json");
+        const { id } = req.params;
 
-    res.send(await PostModel.findById(id));
+        PostModel.findById(id, (err, post) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(200).send({ message: "Success", data: post });
+        });
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 router.get("/byUserId/:userId", async (req, res) => {
@@ -31,22 +61,40 @@ router.get("/byUserId/:userId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    res.set("Content-Type", "application/json");
-    const { title, description, tags, body, authorId } = req.body;
-    const author = await UserModel.findById(authorId);
-    const newPost = new PostModel({ title, description, tags, body, author });
+    try {
+        res.set("Content-Type", "application/json");
+        const { title, description, tags, body, authorId } = req.body;
+        const author = await UserModel.findById(authorId);
+        const newPost = new PostModel({ title, description, tags, body, author });
 
-    res.send(await newPost.save());
+        newPost.save((err) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(201).send({ message: "Success" });
+        });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+router.put("/:id", async (req, res) => {
+    res.set("Content-Type", "application/json");
+    const { id } = req.params;
+    const { title, description, tags, body } = req.body;
+
+    PostModel.findByIdAndUpdate(id, { title, description, tags, body }, (err, post) => {
+        if (err) return res.status(500).send({ message: "Error" });
+        else return res.status(200).send({ message: "Success", data: post });
+    });
 });
 
 router.post("/like", async (req, res) => {
     try {
         res.set("Content-Type", "application/json");
-        const { postId, userId, liked } = req.body;
+        const { postId, userId } = req.body;
         const post = await PostModel.findById(postId);
 
-        if (liked) post.usersIdsLiked.push(userId);
-        else post.usersIdsLiked = post.usersIdsLiked.filter((id) => id != userId);
+        if (!post.userIdsLiked.includes(userId)) post.userIdsLiked.push(userId);
+        else post.userIdsLiked = post.userIdsLiked.filter((id) => id != userId);
 
         post.save((err) => {
             if (err) return res.status(500).send({ message: "Error" });
@@ -57,11 +105,39 @@ router.post("/like", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.post("/filter", async (req, res) => {
     res.set("Content-Type", "application/json");
-    const { id } = req.params;
+    const { login, title, hashtag, onlySubs, userId } = req.body;
 
-    res.send(await PostModel.findByIdAndRemove(id));
+    const arr = [
+        { title: { $regex: new RegExp(title) } },
+        { "author.login": { $regex: new RegExp(login) } },
+        { tags: { $elemMatch: { $regex: new RegExp(hashtag) } } },
+    ];
+
+    if (onlySubs) {
+        const user = await UserModel.findById(userId);
+        arr.push({ "author._id": { $in: user.subscriptionUserIds } });
+    }
+
+    PostModel.find({ $and: arr }, (err, posts) => {
+        if (err) return res.status(500).send({ message: "Error" });
+        else return res.status(200).send({ message: "Success", data: posts });
+    });
+});
+
+router.delete("/:id", (req, res) => {
+    try {
+        res.set("Content-Type", "application/json");
+        const { id } = req.params;
+
+        PostModel.findByIdAndRemove(id, (err) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(200).send({ message: "Success" });
+        });
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 module.exports = router;

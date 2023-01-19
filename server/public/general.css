@@ -60,3 +60,7 @@ header {
 .navbar-btn:hover {
     background: #e2bbbd;
 }
+
+.text-center {
+    text-align: center;
+}

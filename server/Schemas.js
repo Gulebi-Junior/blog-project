@@ -5,7 +5,7 @@ const UserSchema = new Schema({
     surname: { type: String },
     login: { type: String },
     password: { type: String },
-    subscribedUsersIds: { type: [String], default: [] },
+    subscriptionUserIds: { type: [String], default: [] },
 });
 
 const PostSchema = new Schema({
@@ -14,7 +14,7 @@ const PostSchema = new Schema({
     body: { type: String },
     image: { type: String },
     author: { type: UserSchema },
-    usersIdsLiked: { type: [String], default: [] },
+    userIdsLiked: { type: [String], default: [] },
 });
 
 module.exports = { UserSchema, PostSchema };

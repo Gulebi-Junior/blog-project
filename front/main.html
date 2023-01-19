@@ -20,11 +20,34 @@
                 </div>
             </header>
             <div id="newsline-container">
-                <h2 id="newsline-title">Newsline</h2>
+                <h2 id="newsline-title" class="text-center">Newsline</h2>
                 <div id="newsline-block">
-                    <div id="posts-sort"></div>
+                    <div id="posts-sort">
+                        <h3 id="posts-sort-title" class="text-center">Filter</h3>
+                        <div id="posts-sorts-block">
+                            <div class="posts-sort-row">
+                                <label for="posts-byUser-sort-input">By User Login</label>
+                                <input type="text" id="posts-byUser-sort-input" class="input" />
+                            </div>
+                            <div class="posts-sort-row">
+                                <label for="posts-byPost-sort-input">By Post Title</label>
+                                <input type="text" id="posts-byPost-sort-input" class="input" />
+                            </div>
+                            <div class="posts-sort-row">
+                                <label for="posts-byHashtag-sort-input">By Hashtag</label>
+                                <input type="text" id="posts-byHashtag-sort-input" class="input" />
+                            </div>
+                            <div class="posts-sort-row">
+                                <label for="posts-onlySubs-sort-input">Only Subs</label>
+                                <input type="checkbox" id="posts-onlySubs-sort-input" class="input input-cb" />
+                            </div>
+                            <div class="posts-sort-btn-row">
+                                <button class="btn">Filter</button>
+                            </div>
+                        </div>
+                    </div>
                     <div id="posts-block">
-                        <h3 id="posts-title">Posts</h3>
+                        <h3 id="posts-title" class="text-center">Posts</h3>
                         <div id="posts-cards-block"></div>
                     </div>
                 </div>

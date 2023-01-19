@@ -1,25 +1,33 @@
 const express = require("express");
-const { UserModel } = require("../Models");
+const { PostModel, UserModel } = require("../Models");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    res.set("Content-Type", "application/json");
+    try {
+        res.set("Content-Type", "application/json");
 
-    UserModel.find({}, (err, users) => {
-        if (err) return res.status(500).send({ message: "Error" });
-        else return res.status(200).send({ message: "Success", data: users });
-    });
+        UserModel.find({}, (err, users) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(200).send({ message: "Success", data: users });
+        });
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 router.get("/:id", async (req, res) => {
-    res.set("Content-Type", "application/json");
-    const { id } = req.params;
+    try {
+        res.set("Content-Type", "application/json");
+        const { id } = req.params;
 
-    UserModel.findById(id, (err, user) => {
-        if (err) return res.status(500).send({ message: "Error" });
-        else return res.status(200).send({ message: "Success", data: user });
-    });
+        UserModel.findById(id, (err, user) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(200).send({ message: "Success", data: user });
+        });
+    } catch (error) {
+        console.error(error);
+    }
 });
 
 router.post("/login", (req, res) => {
@@ -62,8 +70,8 @@ router.post("/subscribe", async (req, res) => {
         const { targetId, userId } = req.body;
         const user = await UserModel.findById(userId);
 
-        if (!user.subscribedUsersIds.includes(targetId)) user.subscribedUsersIds.push(targetId);
-        else user.subscribedUsersIds = user.subscribedUsersIds.filter((id) => id != targetId);
+        if (!user.subscriptionUserIds.includes(targetId)) user.subscriptionUserIds.push(targetId);
+        else user.subscriptionUserIds = user.subscriptionUserIds.filter((id) => id != targetId);
 
         user.save((err) => {
             if (err) return res.status(500).send({ message: "Error" });
@@ -77,12 +85,18 @@ router.post("/subscribe", async (req, res) => {
 router.put("/:id", async (req, res) => {
     res.set("Content-Type", "application/json");
     const { id } = req.params;
-    const { name, surname, login, password } = req.body;
-    const user = await UserModel.findById(id);
+    const { name, surname, login } = req.body;
 
-    Object.assign(user, { name, surname, login, password });
-
-    res.send(await user.save());
+    UserModel.findByIdAndUpdate(id, { name, surname, login }, async (err, user) => {
+        if (err) return res.status(500).send({ message: "Error" });
+        else {
+            const author = await UserModel.findById(id);
+            PostModel.updateMany({ "author._id": id }, { author }, (err) => {
+                if (err) return res.status(500).send({ message: "Error" });
+                return res.status(200).send({ message: "Success", data: user });
+            });
+        }
+    });
 });
 
 router.delete("/:id", async (req, res) => {

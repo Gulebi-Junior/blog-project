@@ -1,16 +1,11 @@
 #profile-container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 0px 10%;
+    padding: 0px 15%;
 }
 
 #profile-block {
-    /* display: flex;
-    justify-content: center; */
     gap: 20px;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1.3fr 3fr 1.3fr;
 }
 
 #profile-info-block,
@@ -20,18 +15,24 @@
     border-radius: 10px;
     padding: 20px 30px;
     height: fit-content;
+}
+
+#profile-info-block {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* #profile-posts-block {
-    max-width: 50%;
-} */
+#profile-info-change-btn {
+    margin-top: 7px;
+}
 
-#profile-title,
-#profile-posts-title {
+#profile-title {
     margin-bottom: 20px;
+}
+
+#profile-posts-title {
+    margin-bottom: 8px;
 }
 
 .card-likes-subblock {
@@ -45,11 +46,16 @@
 }
 
 .card-title {
+    max-height: 80px;
+    overflow: auto;
     font-size: 22px;
 }
 
 .card-body {
+    max-height: 180px;
+    overflow: auto;
     margin-top: 5px;
+    margin-bottom: 7px;
 }
 
 .card-description {
@@ -57,15 +63,72 @@
 }
 
 .card-likes-subblock {
-    margin: 7px 0px;
+    margin-bottom: 7px;
 }
 
 .card-likes-num {
     font-weight: 500;
 }
 
-textarea {
-    width: 100%;
-    resize: none;
+.card-tags-block {
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.btn {
+    height: 28px;
+    border-radius: 5px;
+    background-color: #6c91c2;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 3px 6px;
+    cursor: pointer;
     border: 0px;
+
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background-color: #96b7e1;
+}
+
+.input {
+    height: 28px;
+    width: 120px;
+    border: 1px solid #6b7d7d;
+    border-radius: 5px;
+    padding: 2px 4px;
+    background-color: #ffffff;
+    outline: 0px;
+    font-size: 16px;
+}
+
+.input:focus {
+    outline: #397e8b solid 1px;
+}
+
+.input::placeholder {
+    color: #83838d;
+}
+
+#profile-posts-cards-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-posts-btn-subblock {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.card-tags-input-subblock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
