@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="http://localhost:3000/static/general.css" />
-        <link rel="stylesheet" href="./profile.css" />
+        <link rel="stylesheet" href="http://localhost:3000/static/profile.css" />
         <title>Profile Page</title>
     </head>
     <body>
@@ -23,12 +23,12 @@
                 <h2 id="profile-title" class="text-center">Profile</h2>
                 <div id="profile-block">
                     <div id="profile-info-block">
-                        <h3 id="profile-info-fullname" class="text-center" contenteditable="false"></h3>
-                        <h4 id="profile-info-login" class="text-center" contenteditable="false"></h4>
+                        <h3 id="profile-info-fullname" class="text-center block-title" contenteditable="false"></h3>
+                        <h3 id="profile-info-login" class="text-center" contenteditable="false"></h3>
                         <button id="profile-info-change-btn" class="btn" onclick="changeUser(event)">Change</button>
                     </div>
                     <div id="profile-posts-block">
-                        <h3 id="profile-posts-title" class="text-center">Posts</h3>
+                        <h3 id="profile-posts-title" class="text-center block-title">Posts</h3>
                         <div class="profile-posts-btn-subblock">
                             <button class="btn" id="profile-create-btn" onclick="createPost(event)">
                                 Create New Post
@@ -36,7 +36,10 @@
                         </div>
                         <div id="profile-posts-cards-block"></div>
                     </div>
-                    <div id="profile-subscribers-block"><h3 class="text-center">Subscribers</h3></div>
+                    <div id="profile-subscribers-block">
+                        <h3 class="text-center block-title">Subscriptions</h3>
+                        <div id="profile-subscriptions-subblock"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,5 +69,9 @@
                 <button class="btn card-delete-btn">Delete</button>
             </div>
         </div>
+    </template>
+
+    <template id="subscription-template">
+        <h3 class="subscription-login"></h3>
     </template>
 </html>

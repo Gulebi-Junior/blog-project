@@ -50,7 +50,7 @@ header {
     font-size: 16px;
     padding: 3px 6px;
     font-weight: 500;
-    background: #c49799;
+    background: #bf676b;
     cursor: pointer;
     border: 0px;
 
@@ -58,7 +58,7 @@ header {
 }
 
 .navbar-btn:hover {
-    background: #e2bbbd;
+    background: #df9296;
 }
 
 .text-center {

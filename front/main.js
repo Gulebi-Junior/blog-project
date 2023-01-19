@@ -48,7 +48,13 @@ async function like(postId, event) {
 }
 
 async function loadPosts(skip) {
-    const response = await fetch(url + "/posts/get/" + skip, { method: "GET" });
+    const filters = JSON.parse(localStorage.getItem("filter"));
+
+    const response = await fetch(url + "/posts/filter/" + skip, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(filters),
+    });
     const data = await response.json();
 
     const postsBlock = document.querySelector("#posts-cards-block");
@@ -82,17 +88,46 @@ async function getNumberOfPosts() {
     if (data.message === "Success") localStorage.setItem("postsLimit", data.data);
 }
 
-async function filter() {
-    const payload = {};
+function setFilters() {
+    const userId = localStorage.getItem("currentUserId");
 
-    const response = await fetch(url + "/posts/filter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-    });
-    const data = await response.json();
+    const filters = {
+        login: document.querySelector("#posts-byUser-sort-input").value,
+        title: document.querySelector("#posts-byPost-sort-input").value,
+        hashtag: document.querySelector("#posts-byHashtag-sort-input").value,
+        onlySubs: document.querySelector("#posts-onlySubs-sort-input").checked,
+        userId,
+    };
 
-    if (data.message === "Success") localStorage.setItem("postsLimit", data.data);
+    localStorage.setItem("filter", JSON.stringify(filters));
+}
+
+function updateFilters() {
+    setFilters();
+    document.querySelector("#posts-cards-block").innerHTML = "";
+    loadPosts();
+}
+
+function clearFilters() {
+    document.querySelector("#posts-byUser-sort-input").value = "";
+    document.querySelector("#posts-byPost-sort-input").value = "";
+    document.querySelector("#posts-byHashtag-sort-input").value = "";
+    document.querySelector("#posts-byPost-sort-input").checked = false;
+}
+
+function fillFilters() {
+    const filters = JSON.parse(localStorage.getItem("filter"));
+
+    document.querySelector("#posts-byUser-sort-input").value = filters.login;
+    document.querySelector("#posts-byPost-sort-input").value = filters.title;
+    document.querySelector("#posts-byHashtag-sort-input").value = filters.hashtag;
+    document.querySelector("#posts-onlySubs-sort-input").checked = filters.onlySubs;
+}
+
+if (!localStorage.getItem("filter")) {
+    setFilters();
+} else {
+    fillFilters();
 }
 
 getNumberOfPosts();

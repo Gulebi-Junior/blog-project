@@ -22,10 +22,10 @@ POST http://localhost:3000/users/login
 content-type: application/json
 
 {
-    "name": "Gleb",
-    "surname": "Ivanov",
-    "login": "Guleb",
-    "password": "1234"
+    "name": "Glob",
+    "surname": "Ivinov",
+    "login": "Globster",
+    "password": "123"
 }
 
 ### Delete User

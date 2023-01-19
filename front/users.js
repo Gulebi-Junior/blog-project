@@ -28,6 +28,10 @@ async function loadUsers() {
     const usersBlock = document.querySelector("#users-cards-block");
     const userCardTemplate = document.querySelector("#user-card-template");
 
+    const userId = localStorage.getItem("currentUserId");
+    const response2 = await fetch(url + "/users/" + userId, { method: "GET" });
+    const curentUser = await response2.json();
+
     usersBlock.innerHTML = "";
 
     for (const user of data.data) {
@@ -37,9 +41,7 @@ async function loadUsers() {
         clone.querySelector(".card-login").textContent = user.login;
         clone.querySelector(".card-subscribe-btn").addEventListener("click", (event) => subscribe(user._id, event));
 
-        const userId = localStorage.getItem("currentUserId");
-
-        if (user.subscriptionUserIds.includes(userId)) {
+        if (curentUser.data.subscriptionUserIds.includes(user._id)) {
             clone.querySelector(".card-subscribe-btn").textContent = "Unsubscribe";
         }
 

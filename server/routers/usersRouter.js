@@ -30,6 +30,20 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+router.post("/subscriptionsInfo/", async (req, res) => {
+    try {
+        res.set("Content-Type", "application/json");
+        const { arrayOfIds } = req.body;
+
+        UserModel.find({ _id: { $in: arrayOfIds } }, (err, users) => {
+            if (err) return res.status(500).send({ message: "Error" });
+            else return res.status(200).send({ message: "Success", data: users });
+        });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 router.post("/login", (req, res) => {
     try {
         res.set("Content-Type", "application/json");

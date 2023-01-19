@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="http://localhost:3000/static/general.css" />
-        <link rel="stylesheet" href="./login.css" />
+        <link rel="stylesheet" href="http://localhost:3000/static/login.css" />
         <title>Login Page</title>
     </head>
     <body>
@@ -17,7 +17,7 @@
                 <input type="text" id="login-input" class="input" placeholder="Login" />
                 <input type="password" id="password-input" class="input" placeholder="Password" />
                 <button id="login-btn" class="btn block-btn" onclick="login()">Login</button>
-                <button id="back-btn" class="btn back-btn" onclick="history.back()">Back</button>
+                <button id="back-btn" class="btn back-btn" onclick="location.replace('signin.html')">Sign in</button>
             </div>
         </div>
         <script src="./login.js"></script>

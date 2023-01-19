@@ -13,6 +13,7 @@
     padding: 20px 30px;
     border-radius: 10px;
     background: #ffffff;
+    gap: 15px;
 }
 
 #users-title {

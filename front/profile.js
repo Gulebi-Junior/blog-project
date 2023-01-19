@@ -1,4 +1,25 @@
 const url = "http://localhost:3000";
+let postsOnPage = 10;
+
+const removeInfiniteScroll = () => {
+    window.removeEventListener("scroll", handleInfiniteScroll);
+};
+
+const handleInfiniteScroll = () => {
+    const postsLimit = Number(localStorage.getItem("postsLimit"));
+    const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
+
+    if (postsOnPage >= postsLimit) {
+        console.log("remove");
+        removeInfiniteScroll();
+    }
+
+    if (endOfPage) {
+        console.log("end");
+        loadPosts(postsOnPage);
+        postsOnPage += 10;
+    }
+};
 
 async function changePost(event, id) {
     const card = event.composedPath()[2];
@@ -6,13 +27,17 @@ async function changePost(event, id) {
         card.querySelector(".card-change-btn").textContent = "Save";
 
         card.querySelector(".card-title").setAttribute("contenteditable", true);
+        card.querySelector(".card-title").classList.add("text-outline");
         card.querySelector(".card-body").setAttribute("contenteditable", true);
+        card.querySelector(".card-body").classList.add("text-outline");
         card.querySelector(".card-tags-input-subblock").style.display = "flex";
     } else {
         card.querySelector(".card-change-btn").textContent = "Change";
 
         card.querySelector(".card-title").setAttribute("contenteditable", false);
+        card.querySelector(".card-title").classList.remove("text-outline");
         card.querySelector(".card-body").setAttribute("contenteditable", false);
+        card.querySelector(".card-body").classList.remove("text-outline");
         card.querySelector(".card-tags-input-subblock").style.display = "none";
 
         const payload = {
@@ -115,6 +140,24 @@ async function loadUserInfo() {
 
     document.querySelector("#profile-info-fullname").textContent = `${data.data.name} ${data.data.surname}`;
     document.querySelector("#profile-info-login").textContent = data.data.login;
+
+    const response2 = await fetch(url + "/users/subscriptionsInfo/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ arrayOfIds: data.data.subscriptionUserIds }),
+    });
+    const data2 = await response2.json();
+
+    const subsBlock = document.querySelector("#profile-subscriptions-subblock");
+    const subTemplate = document.querySelector("#subscription-template");
+
+    for (const sub of data2.data) {
+        const clone = subTemplate.content.cloneNode(true);
+
+        clone.querySelector(".subscription-login").textContent = sub.login;
+
+        subsBlock.appendChild(clone);
+    }
 }
 
 async function createPost(event) {
@@ -124,8 +167,10 @@ async function createPost(event) {
     const clone = postTemplate.content.cloneNode(true);
 
     clone.querySelector(".card-title").setAttribute("contenteditable", true);
+    clone.querySelector(".card-title").classList.add("text-outline");
     clone.querySelector(".card-title").textContent = "Title";
     clone.querySelector(".card-body").setAttribute("contenteditable", true);
+    clone.querySelector(".card-body").classList.add("text-outline");
     clone.querySelector(".card-body").textContent = "Body";
     clone.querySelector(".card-tags-input-subblock").style.display = "flex";
     clone.querySelector(".card-likes-subblock").style.display = "none";
@@ -165,5 +210,14 @@ async function createPost(event) {
     postsBlock.prepend(clone);
 }
 
+async function getNumberOfPosts() {
+    const response = await fetch(url + "/posts/count", { method: "GET" });
+    const data = await response.json();
+
+    if (data.message === "Success") localStorage.setItem("postsLimit", data.data);
+}
+
+getNumberOfPosts();
 loadUserInfo();
-loadPosts();
+window.addEventListener("scroll", handleInfiniteScroll);
+loadPosts(postsOnPage - 10);

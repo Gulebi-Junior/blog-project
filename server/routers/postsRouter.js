@@ -105,8 +105,9 @@ router.post("/like", async (req, res) => {
     }
 });
 
-router.post("/filter", async (req, res) => {
+router.post("/filter/:skip", async (req, res) => {
     res.set("Content-Type", "application/json");
+    const { skip } = req.params;
     const { login, title, hashtag, onlySubs, userId } = req.body;
 
     const arr = [
@@ -123,7 +124,9 @@ router.post("/filter", async (req, res) => {
     PostModel.find({ $and: arr }, (err, posts) => {
         if (err) return res.status(500).send({ message: "Error" });
         else return res.status(200).send({ message: "Success", data: posts });
-    });
+    })
+        .skip(Number(skip))
+        .limit(10);
 });
 
 router.delete("/:id", (req, res) => {

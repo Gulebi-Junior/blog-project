@@ -12,11 +12,11 @@ POST http://localhost:3000/posts
 content-type: application/json
 
 {
-    "title": "Flour",
+    "title": "Boba",
     "description": "The best flour",
-    "tags": ["#food", "#products", "#cooking"],
-    "body": "Tsesna flour of the highest grade is a UNIVERSAL flour of fine grinding, creamy white in color.",
-    "authorId": "63c1b872043c4df56f446327"
+    "tags": ["#bob"],
+    "body": "Bobster",
+    "authorId": "63c949ea95c200f7a8283618"
 }
 
 ### Delete Post
